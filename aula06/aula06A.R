@@ -70,3 +70,21 @@ filter(bird_behaviour, FID < 20)
 summarize(bird_behaviour,
           mean.Disturbance = mean(Disturbance),
           desviopadrao = sd(Disturbance))
+
+# Selecionar 5 linhas de bird_behaviour de forma aleatório 
+sample_n(bird_behaviour, 5)
+
+# 29) Como usar a função group_by para agrupar um data frame 
+# por uma ou mais variáveis?
+# Suponha que temos um data frame df com informações sobre vendas
+# de produtos, incluindo o produto, o mês e o valor da venda. 
+# Queremos agrupar as informações por produto e mês. 
+# Podemos usar a função group_by para isso.
+df <- data.frame( produto = c("A", "B", "C", "A", "B", "C"),
+                  mes = c(3,3,3,9,9,9),
+                  valor = c(300,330,390,900,990,930))
+df_grp <- df %>% group_by(produto, mes)
+df_grp
+
+df_grp <- df %>% group_by(produto, mes) %>% summarize(total = sum(valor))
+df_grp
